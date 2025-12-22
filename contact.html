@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact</title>
+    <title>Contact - Joanton's Learning Journal</title>
 </head>
 
 <body>
@@ -24,24 +24,29 @@
             <p>This form is practice for inputs, labels, and accessibility.</p>
 
             <form>
-                <div>
-                    <label for="name">Name</label><br>
-                    <input type="text" id="name" name="name">
-                </div>
+                <fieldset>
+                    <legend>Contact Information</legend>
+                    <div>
+                        <label for="name">Name</label><br>
+                        <input type="text" id="name" name="name">
+                    </div>
 
+                    <br>
+
+                    <div>
+                        <label for="email">Email</label> <br>
+                        <input type="email" id="email" name="email">
+                    </div>
+
+                    <br>
+
+                    <div>
+                        <label for="Message">Message</label> <br>
+                        <input type="text" id="Message" name="messsage">
+                    </div>
+                </fieldset>
                 <br>
-
-                <div>
-                    <label for="email">Email</label> <br>
-                    <input type="email" id="email" name="email">
-                </div>
-
-                <br>
-
-                <div>
-                    <label for="Message">Message</label> <br>
-                    <input type="text" id="Message" name="messsage">
-                </div>
+                <button type="submit">Send</button>
             </form>
         </section>
     </main>
