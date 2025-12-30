@@ -6,11 +6,15 @@ body {
     background-color: #fff3cd;
 }
 
+/* using a class for styling (always try to use a class for styling */
+
 h1,
 h2,
 h3 {
     color: #333;
 }
+
+/* Here we canuse multiple headings by separating them with comma's */
 
 section {
     border: 1px solid #ccc;
@@ -18,3 +22,19 @@ section {
     margin: 16px;
     background-color: #fafafa;
 }
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #333;
+}
+
+/* nav a:hover {
+    text-decoration: underline;
+} */
