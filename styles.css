@@ -1,21 +1,21 @@
+/* Base (global defaults) - affects the entire document. */
 body {
     font-family: Arial, sans-serif;
 }
 
+/* Utility / helper classes  - This is a reusable helper class you can apply anywhere*/
 .highlight {
     background-color: #fff3cd;
 }
 
-/* using a class for styling (always try to use a class for styling */
-
+/* Typography (text-related rules) - controls how text looks, not layout. */
 h1,
 h2,
 h3 {
     color: #333;
 }
 
-/* Here we canuse multiple headings by separating them with comma's */
-
+/* Layout Helper - defines spacing and structure for sections - classic layout responsibility */
 section {
     border: 1px solid #ccc;
     padding: 16px;
@@ -23,6 +23,7 @@ section {
     background-color: #fafafa;
 }
 
+/* Header + Navigation layout */
 nav {
     display: flex;
     gap: 16px;
@@ -46,6 +47,10 @@ header {
     gap: 16px;
 }
 
+/* These rules work together to control the sites header and navigation behavior */
+
+
+/* Responsive Rules (media queries) */
 @media (max-width: 600px) {
     header {
         flex-direction: column;
@@ -56,3 +61,5 @@ header {
         padding: 0 8px;
     }
 }
+
+/* Media queries alwyas go last becuase they override earlier rules */
