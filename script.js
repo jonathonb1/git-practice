@@ -1,32 +1,35 @@
-const title = document.getElementById("page-title");
 
-if (title) {
-    title.textContent = "Welcome to My Learning Journal";
+
+function setupTitleToggle() {
+    const title = document.getElementById("page-title");
+    if (!title) return; // If there's no title on this page, stop here
 
     const button = document.getElementById("change-title-btn");
+    if (!button) return; // If there's no button, stop here
 
     let isOriginalTitle = true;
+    title.textContent = "Welcome to My Learning Journal";
 
-    if (button) {
-        button.addEventListener("click", () => {
-            if (isOriginalTitle) {
-                title.textContent = "Title Changed by JavaScript";
-                isOriginalTitle = false;
-            } else {
-                title.textContent = "Welcome to my Learning Journal"
-                isOriginalTitle = true;
-            }
-        });
-    }
+    button.addEventListener("click", () => {
+        if (isOriginalTitle) {
+            title.textContent = "Title Changed by JavaScript";
+            isOriginalTitle = false;
+        } else {
+            title.textContent = "Welcome to My Learning Journal";
+            isOriginalTitle = true;
+        }
+    });
 }
 
-const form = document.getElementById("contact-form");
+function setupContactForm() {
+    const form = document.getElementById("contact-form");
+    if (!form) return; // If there's no contact form on this page, do nothing
 
-if (form) {
+    const feedback = document.getElementById("form-feedback");
+
     form.addEventListener("submit", (event) => {
-        event.preventDefault()
+        event.preventDefault();
 
-        const feedback = document.getElementById("form-feedback");
         const nameInput = document.getElementById("name");
         const emailInput = document.getElementById("email");
         const messageInput = document.getElementById("message");
@@ -36,11 +39,17 @@ if (form) {
         const message = messageInput.value.trim();
 
         if (message === "") {
-            feedback.textContent = "Please enter a message before submitting";
+            feedback.textContent = "Please enter a message before submitting.";
             feedback.style.color = "red";
         } else {
             feedback.textContent = "Thanks! Your message has been received.";
             feedback.style.color = "green";
+            // Optional: clear the form after success
+            // form.reset();
         }
     });
 }
+
+setupTitleToggle();
+setupContactForm();
+
