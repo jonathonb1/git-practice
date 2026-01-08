@@ -50,6 +50,30 @@ function setupContactForm() {
     });
 }
 
+const topics = [
+    "HTML Semantics",
+    "CSS Layout",
+    "JavaScript Basics",
+    "Git and GitHub",
+    "Flexbox",
+    "Forms and Validation"
+];
+console.log("Topics array:", topics);
+
+for (let i = 0; i < topics.length; i++) {
+    console.log("Learing topic:", topics[i]);
+}
+
+const topicsList = document.getElementById("topics-list");
+
+if (topicsList) {
+    for (let i = 0; i < topics.length; i++) {
+        const li = document.createElement("li");
+        li.textContent = topics[i];
+        topicsList.appendChild(li);
+    }
+}
+
 setupTitleToggle();
 setupContactForm();
 
