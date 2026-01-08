@@ -1,5 +1,7 @@
 
-
+// ====================
+// Startup functions
+// ====================
 function setupTitleToggle() {
     const title = document.getElementById("page-title");
     if (!title) return; // If there's no title on this page, stop here
@@ -50,6 +52,9 @@ function setupContactForm() {
     });
 }
 
+// ====================
+// Data (arrays)
+// ====================
 const topics = [
     "HTML Semantics",
     "CSS Layout",
@@ -58,13 +63,37 @@ const topics = [
     "Flexbox",
     "Forms and Validation"
 ];
-console.log("Topics array:", topics);
+const wins = [
+    "Finished semantic HTML",
+    "Styled navigation with Flexbox",
+    "Built JS button toggle",
+    "Handled form submission",
+    "Looped through data to build list"
+];
 
+// ====================
+// Console checks
+// ====================
+console.log("Topics array:", topics);
+console.log("Wins array:", wins);
+
+// Loops (render content)
 for (let i = 0; i < topics.length; i++) {
-    console.log("Learing topic:", topics[i]);
+    console.log("Learning topic:", topics[i]);
 }
 
+for (let i = 0; i < wins.length; i++) {
+    console.log("Win:", wins[i]);
+}
+
+
+// ====================
+// Render lists from data
+// ====================
+
+// Topics list
 const topicsList = document.getElementById("topics-list");
+const winsList = document.getElementById("wins-list");
 
 if (topicsList) {
     for (let i = 0; i < topics.length; i++) {
@@ -74,6 +103,17 @@ if (topicsList) {
     }
 }
 
+if (winsList) {
+    for (let i = 0; i < wins.length; i++) {
+        const li = document.createElement("li");
+        li.textContent = wins[i];
+        winsList.appendChild(li);
+    }
+}
+
+// ====================
+// Initialize behavior
+// ====================
 setupTitleToggle();
 setupContactForm();
 
