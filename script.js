@@ -81,9 +81,15 @@ console.log("Wins array:", wins);
 for (let i = 0; i < topics.length; i++) {
     console.log("Learning topic:", topics[i]);
 }
+for (const topic of topics) {
+    console.log("Learning topic (of):", topic);
+}
 
 for (let i = 0; i < wins.length; i++) {
     console.log("Win:", wins[i]);
+}
+for (const win of wins) {
+    console.log("win (of):", win);
 }
 
 
@@ -96,17 +102,17 @@ const topicsList = document.getElementById("topics-list");
 const winsList = document.getElementById("wins-list");
 
 if (topicsList) {
-    for (let i = 0; i < topics.length; i++) {
+    for (const topic of topics) {
         const li = document.createElement("li");
-        li.textContent = topics[i];
+        li.textContent = topic;
         topicsList.appendChild(li);
     }
 }
 
 if (winsList) {
-    for (let i = 0; i < wins.length; i++) {
+    for (const win of wins) {
         const li = document.createElement("li");
-        li.textContent = wins[i];
+        li.textContent = win;
         winsList.appendChild(li);
     }
 }
