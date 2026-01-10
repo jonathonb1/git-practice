@@ -8,6 +8,11 @@ body {
     background-color: #fff3cd;
 }
 
+.highlight-active {
+    border: 2px solid #ff8800;
+    background-color: #fff8e1;
+}
+
 /* Typography (text-related rules) - controls how text looks, not layout. */
 h1,
 h2,

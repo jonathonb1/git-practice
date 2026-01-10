@@ -3,10 +3,10 @@
 // Startup functions
 // ====================
 function setupTitleToggle() {
-    const title = document.getElementById("page-title");
+    const title = document.querySelector("#page-title");
     if (!title) return; // If there's no title on this page, stop here
 
-    const button = document.getElementById("change-title-btn");
+    const button = document.querySelector("#change-title-btn");
     if (!button) return; // If there's no button, stop here
 
     let isOriginalTitle = true;
@@ -24,7 +24,7 @@ function setupTitleToggle() {
 }
 
 function setupContactForm() {
-    const form = document.getElementById("contact-form");
+    const form = document.querySelector("#contact-form");
     if (!form) return; // If there's no contact form on this page, do nothing
 
     const feedback = document.getElementById("form-feedback");
@@ -98,8 +98,15 @@ for (const win of wins) {
 // ====================
 
 // Topics list
-const topicsList = document.getElementById("topics-list");
-const winsList = document.getElementById("wins-list");
+const topicsList = document.querySelector("#topics-list");
+const winsList = document.querySelector("#wins-list");
+const highlightPara = document.querySelector(".highlight");
+const allHighlights = document.querySelectorAll(".highlight");
+console.log("All highlights:", allHighlights);
+
+for (const el of allHighlights) {
+    el.classList.add("highlight-active");
+}
 
 if (topicsList) {
     for (const topic of topics) {
