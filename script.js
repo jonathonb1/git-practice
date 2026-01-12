@@ -71,62 +71,46 @@ const wins = [
     "Looped through data to build list"
 ];
 
-// ====================
-// Console checks
-// ====================
-console.log("Topics array:", topics);
-console.log("Wins array:", wins);
-
-// Loops (render content)
-for (let i = 0; i < topics.length; i++) {
-    console.log("Learning topic:", topics[i]);
-}
-for (const topic of topics) {
-    console.log("Learning topic (of):", topic);
-}
-
-for (let i = 0; i < wins.length; i++) {
-    console.log("Win:", wins[i]);
-}
-for (const win of wins) {
-    console.log("win (of):", win);
-}
-
 
 // ====================
 // Render lists from data
 // ====================
+function setupHighlights() {
+    const allHighlights = document.querySelectorAll(".highlight");
+
+    for (const el of allHighlights) {
+        el.classList.add("highlight-active");
+    }
+}
 
 // Topics list
-const topicsList = document.querySelector("#topics-list");
-const winsList = document.querySelector("#wins-list");
-const highlightPara = document.querySelector(".highlight");
-const allHighlights = document.querySelectorAll(".highlight");
-console.log("All highlights:", allHighlights);
+function renderLists() {
+    const topicsList = document.querySelector("#topics-list");
+    const winsList = document.querySelector("#wins-list");
 
-for (const el of allHighlights) {
-    el.classList.add("highlight-active");
-}
+    if (topicsList) {
+        for (const topic of topics) {
+            const li = document.createElement("li");
+            li.textContent = topic;
+            topicsList.appendChild(li);
+        }
+    }
 
-if (topicsList) {
-    for (const topic of topics) {
-        const li = document.createElement("li");
-        li.textContent = topic;
-        topicsList.appendChild(li);
+    if (winsList) {
+        for (const win of wins) {
+            const li = document.createElement("li");
+            li.textContent = win;
+            winsList.appendChild(li);
+        }
     }
 }
 
-if (winsList) {
-    for (const win of wins) {
-        const li = document.createElement("li");
-        li.textContent = win;
-        winsList.appendChild(li);
-    }
-}
 
 // ====================
 // Initialize behavior
 // ====================
 setupTitleToggle();
 setupContactForm();
+renderLists();
+setupHighlights();
 
