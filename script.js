@@ -27,7 +27,7 @@ function setupContactForm() {
     const form = document.querySelector("#contact-form");
     if (!form) return; // If there's no contact form on this page, do nothing
 
-    const feedback = document.getElementById("form-feedback");
+    const feedback = document.querySelector("#form-feedback");
 
     form.addEventListener("submit", (event) => {
         event.preventDefault();
@@ -75,6 +75,8 @@ const wins = [
 // ====================
 // Render lists from data
 // ====================
+
+// Highlight Paragraph with queryselectors
 function setupHighlights() {
     const allHighlights = document.querySelectorAll(".highlight");
 
