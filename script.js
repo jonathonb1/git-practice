@@ -28,6 +28,21 @@ function setupContactForm() {
     if (!form) return; // If there's no contact form on this page, do nothing
 
     const feedback = document.querySelector("#form-feedback");
+    const savedStatus = document.querySelector("#saved-status");
+    const messageInput = document.getElementById("message");
+    const clearButton = document.getElementById("clear-draft-btn");
+
+    // Load saved draft from LocalStorage, if it exists
+    const savedMessage = localStorage.getItem("savedMessage");
+
+    if (savedMessage && messageInput) {
+        messageInput.value = savedMessage;
+
+        if (savedStatus) {
+            savedStatus.textContent = "Loaded your saved draft.";
+            savedStatus.style.color = "blue";
+        }
+    }
 
     form.addEventListener("submit", (event) => {
         event.preventDefault();
@@ -44,12 +59,39 @@ function setupContactForm() {
             feedback.textContent = "Please enter a message before submitting.";
             feedback.style.color = "red";
         } else {
-            feedback.textContent = "Thanks! Your message has been received.";
-            feedback.style.color = "green";
+            // Save to LocalStorage before showing success
+            localStorage.setItem("savedMessage", message);
+
+            feedback.textContent = "Draft saved!";
+            feedback.style.color = "blue";
+
             // Optional: clear the form after success
             // form.reset();
         }
     });
+
+    if (clearButton) {
+        clearButton.addEventListener("click", () => {
+            // removed saved draft from local storage
+            localStorage.removeItem("savedMessage");
+
+            // Clear the textarea
+            if (messageInput) {
+                messageInput.value = "";
+            }
+
+            // show status message
+            if (savedStatus) {
+                savedStatus.textContent = "Saved draft cleared.";
+                savedStatus.style.color = "gray";
+            }
+
+            // Optional: Clear the main feedback
+            if (feedback) {
+                feedback.textContent = "";
+            }
+        });
+    }
 }
 
 // ====================

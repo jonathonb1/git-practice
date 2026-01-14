@@ -28,6 +28,10 @@
             <p id="form-feedback"></p>
 
             <form id="contact-form">
+
+                <!-- display for local storage -->
+                <p id="saved-status"></p>
+
                 <fieldset>
                     <legend>Contact Information</legend>
                     <div>
@@ -46,8 +50,11 @@
                             placeholder="Type your message..."></textarea>
                     </div>
                 </fieldset>
+
                 <br>
+
                 <button type="submit">Send</button>
+                <button type="button" id="clear-draft-btn">Clear saved draft</button>
             </form>
         </section>
     </main>
