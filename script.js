@@ -105,13 +105,20 @@ const topics = [
     "Flexbox",
     "Forms and Validation"
 ];
-const wins = [
+let wins = [
     "Finished semantic HTML",
     "Styled navigation with Flexbox",
     "Built JS button toggle",
     "Handled form submission",
     "Looped through data to build list"
 ];
+
+// Try to load saved wins from LocalStorage
+const savedWins = localStorage.getItem("wins");
+
+if (savedWins) {
+    wins = JSON.parse(savedWins);
+}
 
 
 // ====================
@@ -149,6 +156,50 @@ function renderLists() {
     }
 }
 
+function setupWinsFeature() {
+    const input = document.querySelector("#new-win-input");
+    const button = document.querySelector("#add-win-btn");
+    const feedback = document.querySelector("#win-feedback");
+    const winsList = document.querySelector("#wins-list");
+
+    // If this page doesn't have the new win UI, do nothing
+    if (!input || !button) return;
+
+    button.addEventListener("click", () => {
+        const value = input.value.trim();
+        console.log("New win input:", value);
+
+        if (value === "") {
+            if (feedback) {
+                feedback.textContent = "Please type a win before adding.";
+                feedback.style.color = "red";
+            }
+        } else {
+            // 1) Add to our in-memory wins array
+            wins.push(value);
+
+            // 2) Save updated wins array to LocalStorage
+            localStorage.setItem("wins", JSON.stringify(wins));
+
+            // 3) Add a new <li> to the list on the page
+            if (winsList) {
+                const li = document.createElement("li");
+                li.textContent = value;
+                winsList.appendChild(li);
+            }
+
+            // 4) Clear the input
+            input.value = "";
+
+            // 5) Update feedback
+            if (feedback) {
+                feedback.textContent = "Win added!";
+                feedback.style.color = "green";
+            }
+        }
+    });
+}
+
 
 // ====================
 // Initialize behavior
@@ -157,4 +208,4 @@ setupTitleToggle();
 setupContactForm();
 renderLists();
 setupHighlights();
-
+setupWinsFeature();
