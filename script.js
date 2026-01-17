@@ -214,8 +214,9 @@ function setupDailyCheckin() {
     const moodInput = document.querySelector("#mood");
     const feedback = document.querySelector("#checkin-feedback");
     const submitButton = document.querySelector("#daily-submit-btn");
+    const clearButton = document.querySelector("#clear-checkin-btn");
 
-    if (!form || !moodInput || !feedback || !submitButton) return;
+    if (!form || !moodInput || !feedback || !submitButton || !clearButton) return;
 
     function updateSubmitState() {
         submitButton.disabled = moodInput.value.trim().length === 0;
@@ -224,15 +225,36 @@ function setupDailyCheckin() {
     updateSubmitState();
     moodInput.addEventListener("input", updateSubmitState);
 
+    const savedMood = localStorage.getItem("dailyMood");
+    if (savedMood) {
+        feedback.textContent = `Today you're feeling: ${savedMood}`;
+        feedback.style.color = "green";
+    }
+
     form.addEventListener("submit", (event) => {
         event.preventDefault(); //  stop page refresh
 
         const mood = moodInput.value.trim();
 
+        localStorage.setItem("dailyMood", mood);
+
         feedback.textContent = `Today you're feeling: ${mood}`;
         feedback.style.color = "green";
 
         moodInput.value = "";
+        updateSubmitState();
+    });
+
+    clearButton.addEventListener("click", () => {
+        //remove saved mood
+        localStorage.removeItem("dailyMood");
+
+        //clear UI
+        moodInput.value = "";
+        feedback.textContent = "";
+        feedback.style.color = "";
+
+        //Disable submit again
         updateSubmitState();
     });
 }
