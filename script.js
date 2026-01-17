@@ -165,6 +165,14 @@ function setupWinsFeature() {
     // If this page doesn't have the new win UI, do nothing
     if (!input || !button) return;
 
+    function updateButtonState() {
+        const hasText = input.value.trim().length > 0;
+        button.disabled = !hasText;
+    }
+    updateButtonState();
+
+    input.addEventListener("input", updateButtonState);
+
     button.addEventListener("click", () => {
         const value = input.value.trim();
         console.log("New win input:", value);
@@ -190,6 +198,7 @@ function setupWinsFeature() {
 
             // 4) Clear the input
             input.value = "";
+            updateButtonState();
 
             // 5) Update feedback
             if (feedback) {
@@ -200,6 +209,35 @@ function setupWinsFeature() {
     });
 }
 
+function setupDailyCheckin() {
+    const form = document.querySelector("form"); // or give it an ID if you prefer
+    const moodInput = document.querySelector("#mood");
+    const feedback = document.querySelector("#checkin-feedback");
+    const submitButton = document.querySelector("#daily-submit-btn");
+
+    if (!form || !moodInput || !feedback || !submitButton) return;
+
+    function updateSubmitState() {
+        submitButton.disabled = moodInput.value.trim().length === 0;
+    }
+
+    updateSubmitState();
+    moodInput.addEventListener("input", updateSubmitState);
+
+    form.addEventListener("submit", (event) => {
+        event.preventDefault(); //  stop page refresh
+
+        const mood = moodInput.value.trim();
+
+        feedback.textContent = `Today you're feeling: ${mood}`;
+        feedback.style.color = "green";
+
+        moodInput.value = "";
+        updateSubmitState();
+    });
+}
+
+
 
 // ====================
 // Initialize behavior
@@ -209,3 +247,5 @@ setupContactForm();
 renderLists();
 setupHighlights();
 setupWinsFeature();
+setupDailyCheckin();
+
